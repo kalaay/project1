@@ -1,17 +1,71 @@
 $(function() {
   var leg = {
-   nhl : "2a2875c0-ee7b-48e4-b9b7-cd99f2",
-   nfl : "b569ec72-8849-44ac-9f3d-6f515d",
-   mlb : "733b2e56-34ff-4972-88db-8e49b0",
-  nba : "7bab1d20-fabe-4954-ac75-b73bae"
+    nhl: "2a2875c0-ee7b-48e4-b9b7-cd99f2",
+    nfl: "b569ec72-8849-44ac-9f3d-6f515d",
+    mlb: "733b2e56-34ff-4972-88db-8e49b0",
+    nba: "7bab1d20-fabe-4954-ac75-b73bae"
   };
 
   var count = 0;
-  var time = moment()
-    .subtract(10, "days")
-    .format("YYYYMMDD");
+  var news=$("#news");
+  var time = "20181104";
+  // moment().subtract(1, "days").format("YYYYMMDD");
+  function imageScreen(choice,where) {
+    var j;
 
+    var sportURL =
+      "http://webhose.io/filterWebContent?token=bd9e16a2-fd23-4348-b787-ebea1c7e3aac&format=json&ts=1540846661784&sort=crawled&q=text%3A" +
+      choice +
+      "%20thread.country%3AUS%20site_category%3Asports%20site_type%3Anews";
+    fetch(sportURL)
+      .then(resp => resp.json())
+      .then(function(response) {
+        for (var rowAmount = 0; rowAmount < 2; rowAmount++) {
+          j = 3;
+          for (var colAmount = 0; colAmount < j; colAmount++) {
+            if (response.posts[count].thread.main_image != "") {
+              if (response.posts[count].language == "english") {
+                if (response.posts[count].thread.section_title != "") {
+                  var news = $(
+                    '<div class="news-post-holder col-4"><img class="img-responsive" src="' +
+                      response.posts[count].thread.main_image +
+                      '" alt=""><div class="news-post-detail"><span class="date">' +
+                      moment(response.posts[count].thread.published).format(
+                        "MMM Do YYYY"
+                      ) +
+                      '</span><h2><a href="' +
+                      response.posts[count].thread.url +
+                      '">' +
+                      response.posts[count].thread.section_title +
+                      "</a></h2><p>" +
+                      response.posts[count].thread.title +
+                      "</p></div></div>"
+                  );
+
+                  $(where).append(news);
+                } else {
+                  j++;
+                }
+              } else {
+                j++;
+              }
+            } else {
+              j++;
+            }
+            count++;
+          }
+        }
+        // }
+      });
+  }
+
+  setTimeout(imageScreen("nhl",news), 1001);
+  setTimeout(imageScreen("nfl",news), 1001);
+  // setTimeout(imageScreen("mlb"), 3001);
+  setTimeout(imageScreen("nba",news), 1001);
+  // scoreboard=============================================================
   function scoreScreen(api, league) {
+    j = 2;
     var password = "tanakan13";
     var sportURL =
       "https://api.mysportsfeeds.com/v1.0/pull/" +
@@ -29,7 +83,7 @@ $(function() {
         Authorization: "Basic " + btoa(api + ":" + password)
       }
     }).then(function(response) {
-      for (var i = 0; i < 5; i++) {
+      for (var i = 0; i < j; i++) {
         var score =
           "<div id='block'><p class='pricing-title' id='date'>" +
           moment(response.scoreboard.gameScore[i].game.date).format("MMM Do") +
@@ -217,16 +271,23 @@ $(function() {
   // League search
   $(".main-btn").on("click", "[data-league='league']", function() {
     var league = $(this).attr("id");
+    var where=$("#leagueNews");
 
     console.log("League: " + league); //debug and testing
 
     $("#news").addClass("hide");
     $("[data-tab='tabSchedule']").removeClass("hide");
     $("[data-tab='tabScore']").removeClass("hide");
+    $("[data-tab='tabNews']").removeClass("hide");
     $("#searchedPages").removeClass("hide");
+    $("#score").addClass("hide");
+    $("#leagueNews").empty();
+    $("#leagueNews").addClass("hide");
+    
     $("#score").empty();
     displayLeagueMatchupInfo(league);
     scoreScreen(leg[league], league);
+    setTimeout(imageScreen(league,where),2000);
   });
 
   $(document).on("click", "#home", function(e) {
@@ -235,19 +296,27 @@ $(function() {
     $("[data-tab='tabSchedule']").addClass("hide");
     $("[data-tab='tabScore']").addClass("hide");
     $("#searchedPages").addClass("hide");
-    $("#score").addClass("hide");
+    $("#score").empty();
+    $("#leagueNews").empty();
   });
 
   $(document).on("click", '[data-tab="tabScore"]', function(e) {
     e.preventDefault();
     $("#searchedPages").addClass("hide");
     $("#score").removeClass("hide");
+    $("#leagueNews").addClass("hide");
   });
   $(document).on("click", '[data-tab="tabSchedule"]', function(e) {
     e.preventDefault();
     $("#score").addClass("hide");
     $("#searchedPages").removeClass("hide");
-    // scoreScreen(apiKey_NBA, league);
+    $("#leagueNews").addClass("hide");
+  });
+  $(document).on("click", '[data-tab="tabNews"]', function(e) {
+    e.preventDefault();
+    $("#score").addClass("hide");
+    $("#searchedPages").addClass("hide");
+    $("#leagueNews").removeClass("hide");
   });
 
   // Team Search by clicking enter
