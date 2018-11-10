@@ -130,7 +130,7 @@ $(".main-btn").on("click", ".list-inline-item", function() {
   displayLeagueMatchupInfo(league); 
 });
 
-// Team Search by clicking enter
+// Team Search
 $('#search-input').keypress(function (e) {
   if (e.which == '13') {
     var teamName = $('#search-input').val().trim();
@@ -139,13 +139,4 @@ $('#search-input').keypress(function (e) {
     } else
     alert("You have to enter a team name for searching!");
   }
-});
-
-// Team search by clicking submit
-$('#search-submit').on('click', function () {
-  var teamName = $('#search-input').val().trim();
-  if (teamName != "") {
-    displayTeamMatchupInfo(teamName);
-  } else
-  alert("You have to enter a team name for searching!");
 });
