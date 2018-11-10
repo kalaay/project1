@@ -1,4 +1,3 @@
-
 // Display league game schedule function - limited to 10 games
 function displayLeagueMatchupInfo(searchKey) {
   var searchKey = searchKey.replace(/\s/g, '-');
@@ -140,3 +139,11 @@ $('#search-input').keypress(function (e) {
     alert("You have to enter a team name for searching!");
   }
 });
+// Team search by clicking submit
+$('#search-submit').on('click', function () {
+  var teamName = $('#search-input').val().trim();
+  if (teamName != "") {
+    displayTeamMatchupInfo(teamName);
+  } else
+  alert("You have to enter a team name for searching!");
+ });
