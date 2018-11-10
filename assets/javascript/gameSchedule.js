@@ -50,7 +50,7 @@ function displayLeagueMatchupInfo(searchKey) {
       tD1.append(spanTeamAway,spanAtSign,spanTeamHome);
       var convertedTime = moment(results[i].datetime_local.substr(11,8), 'HH:mm:ss');
       var gameTime = convertedTime.format("LT");
-      var tD2 = $(`<td><div class='matchup-time'>${gameTime} ET</div></td>`);
+      var tD2 = $(`<td><div class='matchup-time'><pre>${gameTime} ET</div></td>`);
       var tD3 = $(`<td><a class="matchup-tickets" target='_blank' href=${results[i].url}>Buy Tickets</a></td>`);
 
       tRow.append(tD1,tD2,tD3);

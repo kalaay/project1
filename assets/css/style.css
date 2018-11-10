@@ -48,3 +48,8 @@ table {
 .matchup-teams {
     text-align:left;
 }
+
+#schedule-box {
+    background-color: whitesmoke;
+    opacity: 50%;
+}
