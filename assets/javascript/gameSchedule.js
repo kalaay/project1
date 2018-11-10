@@ -76,7 +76,7 @@ function displayTeamMatchupInfo(searchKey) {
     }
   })
   .done(function(response) {
-    var results = response.events;
+    var results = response.events;  
 
     createMatchupContent (results);
   });
