@@ -256,3 +256,4 @@ $('#search-submit').on('click', function () {
     alert("You have to enter a team name for searching!");
   $('#search-input').val('');
 });
+});
