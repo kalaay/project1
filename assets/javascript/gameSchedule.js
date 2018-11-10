@@ -21,7 +21,7 @@ function createMatchupContent(results) {
       var thTicketsCol = $("<th class='tickets-col-header'>Tickets</th>");
       var tBody = $("<tbody>");
 
-      trRow.append(thMatchupCol,thTimeCol,thTicketsCol);
+      trRow.append(thMatchupCol,thTimeCol,thTicketsCol); 
       tHead.append(trRow);
       dTable.append(tHead);
       $("#matchup-page").append(sectionHeader, dTable);
