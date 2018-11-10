@@ -1,10 +1,24 @@
+<<<<<<< HEAD
+body {
+    font-family: 'Ubuntu', sans-serif;
+    height: 100%;
+    text-align: center;
+=======
 
 body {
     font-family: 'Ubuntu', sans-serif;
+>>>>>>> 0991e4904bd6e4506fbf418cb24c786a6ff4ae43
     font-size: 17px;
     text-emphasis: bolder;
     color:#575555;
     line-height: 1.5;
+<<<<<<< HEAD
+}
+h1 {
+    font-weight: 900;
+    font-size: 38px;
+    margin-bottom: 10px;
+=======
     width: 100%;
     height: 400px;
     background: url('background-sports.jpg') no-repeat center center fixed;
@@ -18,6 +32,7 @@ h1 {
     color: blue;
     margin-top: 10px;
 
+>>>>>>> 0991e4904bd6e4506fbf418cb24c786a6ff4ae43
 }
 .main-btn {
     font-weight: 400;
@@ -47,9 +62,12 @@ table {
 }
 .matchup-teams {
     text-align:left;
+<<<<<<< HEAD
+=======
 }
 
 #schedule-box {
     background-color: whitesmoke;
     opacity: 50%;
+>>>>>>> 0991e4904bd6e4506fbf418cb24c786a6ff4ae43
 }
