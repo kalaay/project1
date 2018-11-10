@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Ubuntu', sans-serif;
     font-size: 17px;
@@ -16,7 +20,6 @@ h1 {
     font-family: 'Monoton', cursive;
     color: blue;
     margin-top: 10px;
-
 }
 
 li {
@@ -27,6 +30,7 @@ li {
     font-weight: 400;
     font-size: 20px;
     margin-bottom: 10px;
+
 }
 .section-header {
     font-weight: 700;
@@ -61,3 +65,7 @@ table {
     font-size: 25px;
 }
 
+.navbar .row .form-inline {
+    position: absolute;
+    right: 0;
+}
