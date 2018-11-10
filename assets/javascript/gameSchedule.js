@@ -3,7 +3,7 @@
 function createMatchupContent(results) {
   $("#matchup-page").empty(); // Clear the page first before showing new data
   if (results == "") {
-    $("#matchup-page").html(searchKey + ": There is nothing returned from SeatGeek");
+    $("#matchup-page").html(searchKey + ": There is nothing returned from SeatGeek");   
   }
 
   var gameDate = "";
